@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Product Form</title>
+  <!-- connect-->
+  <link rel="stylesheet" href="mystyle.css" />
+
+  <script>
+    function validateForm() {
+      var productName = document.getElementById("product_name").value;
+      var category = document.getElementById("category").value;
+      var manufacturingDate = document.getElementById("manufacturing_date").value;
+      var imageURL = document.getElementById("image_url").value;
+
+      // Validate date
+      var currentDate = new Date();
+      var selectedDate = new Date(manufacturingDate);
+      if (selectedDate > currentDate) {
+        alert("Invalid Date!");
+        return false;
+      }
+
+      if (productName === "" || category === "" || manufacturingDate === "" || imageURL === "") {
+        alert("All fields are required!");
+        return false;
+      }
+      return true;
+    }
+  </script>
+
+</head>
+<body>
+<!-- main body -->
+<div class="formm">
+  <h1 style="text-align: center;">Insert Product</h1>
+  <form class="form" action="add_product.php" method="post" enctype="multipart/form-data">
+
+    <label for="product_name">Product Name:</label>
+    <input type="text" id="product_name" placeholder="Product Name" name="product_name">
+
+    <label for="category">Category:</label>
+    <input type="text" id="category" name="category" placeholder="Category">
+
+    <label for="manufacturing_date">Manufacturing Date:</label>
+    <input type="date" id="manufacturing_date" name="manufacturing_date">
+
+    <label for="image_url">Image URL:</label>
+    <input type="text" id="image_url" name="image_url" placeholder="Image URL">
+
+    <input class="complete" type="submit" value="Insert" onclick="return validateForm();">
+  </form>
+  <p style="text-align: center; font-size: 18px">
+  <a style="text-decoration: none; color: #e64a01;" href="product_view.php">View Products</a></p>
+</div>
+</body>
+</html>
